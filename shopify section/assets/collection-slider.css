@@ -1,0 +1,160 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+background: #fff;
+color: #111;
+padding: 48px 0 64px;
+}
+
+.bs-section {
+max-width: 1280px;
+margin: 0 auto;
+padding: 0 28px;
+}
+
+/* header */
+.bs-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 20px;
+}
+.bs-title {
+font-weight: 800;
+font-size: 30px;
+letter-spacing: -0.01em;
+line-height: 1;
+}
+.bs-view-all {
+font-size: 13px;
+font-weight: 500;
+color: #111;
+text-decoration: none;
+display: inline-flex;
+align-items: center;
+gap: 5px;
+white-space: nowrap;
+}
+.bs-view-all:hover { text-decoration: underline; }
+
+/* card grid */
+.bs-grid {
+display: grid;
+grid-auto-flow: column;
+grid-template-rows: 1fr;
+grid-auto-columns: 228px;
+gap: 14px;
+overflow-x: auto;
+/* hide native scrollbar — replaced by custom track */
+scrollbar-width: none;
+-ms-overflow-style: none;
+}
+.bs-grid::-webkit-scrollbar { display: none; }
+
+/* scrollbar */
+.bs-track {
+position: relative;
+width: 100%;
+height: 3px;
+background: #e5e5e5;
+border-radius: 99px;
+margin-top: 16px;
+cursor: pointer;
+transition: height 0.15s, margin-top 0.15s;
+}
+.bs-track:hover { height: 9px; margin-top: 13px; }
+.bs-thumb {
+position: absolute;
+top: 0; left: 0;
+height: 100%;
+background: #111;
+border-radius: 99px;
+pointer-events: none;
+}
+
+.bs-card-img {
+position: relative;
+width: 100%;
+aspect-ratio: 1;
+overflow: hidden;
+border-radius: 4px;
+margin-bottom: 10px;
+background: #f0f0f0;
+}
+.bs-card-img img {
+position: absolute;
+inset: 0;
+width: 100%; height: 100%;
+object-fit: cover;
+transition: opacity 0.32s ease;
+}
+.bs-card-img .primary   { opacity: 1; z-index: 1; }
+.bs-card-img .secondary { opacity: 0; z-index: 2; }
+.bs-card:hover .primary   { opacity: 0; }
+.bs-card:hover .secondary { opacity: 1; }
+
+
+/* mobile */
+@media (max-width: 767px) {
+.bs-section {
+padding: 18px 14px 14px;
+border-radius: 10px;
+margin: 0 16px;
+}
+
+.bs-header {
+justify-content: center;
+margin-bottom: 14px;
+}
+.bs-title { font-size: 20px; }
+.bs-view-all { display: none; }
+
+.bs-grid {
+grid-auto-flow: row;
+grid-template-rows: unset;
+grid-template-columns: 1fr 1fr;
+grid-auto-columns: unset;
+overflow-x: visible;
+}
+
+/* hide scrollbar */
+.bs-track { display: none; }
+
+
+/* Scale badges down and allow text to wrap on narrow mobile cards */
+.bs-badge {
+font-size: 7px;
+padding: 2px 6px;
+white-space: normal;
+line-height: 1.3;
+top: 5px !important;
+}
+.bs-badge.left-2  { left: 5px !important; }
+.bs-badge.right-2 { right: 5px !important; }
+
+.bs-card.hidden-mobile { display: none; height: 0; }
+.bs-card.hidden-mobile.revealed { display: block; height: auto; }
+
+.bs-show-more {
+display: block;
+width: 100%;
+margin-top: 14px;
+padding: 13px 0;
+background: #111;
+color: #fff;
+font-size: 13px;
+font-weight: 700;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+transition: background 0.15s;
+}
+.bs-show-more:hover { background: #333; }
+}
+/* TODO: add fonts when moving to Shopify */
+
+@media (min-width: 768px) {
+.bs-show-more { display: none; }
+}
