@@ -1,11 +1,18 @@
 <script src="https://cdn.tailwindcss.com"></script>
 {{ 'collection-slider.css' | asset_url | stylesheet_tag }}
 
+{%- assign featured_collection = section.settings.featured_collection -%}
+{% assign show_ratings = section.settings.show_ratings %}
+{% assign show_secondary_image = section.settings.show_secondary_image %}
+{% assign productcount = section.settings.productS_to_display %}
+
+
 <div class="bs-section">
   <div class="bs-header">
-    <h2 class="bs-title">Best Sellers</h2>
-    <a href="#" class="bs-view-all">
-      Shop All Best Sellers
+    <h2 class="bs-title">{{  featured_collection.title }}</h2>
+    <a href="{{ featured_collection.url }}" class="bs-view-all">
+      Shop All {{ featured_collection.title }}
+      {%- comment %}change this to either translation or section setting {%- endcomment -%}
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M5 12h14M12 5l7 7-7 7"/>
       </svg>
@@ -13,148 +20,13 @@
   </div>
 
   <div class="bs-grid" id="bs-grid">
-
-    <article class="bs-card min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 left-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-white text-black border border-black">Best Seller</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
-      </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">shoes</h3>
-      <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">1,234 Reviews</span>
-      </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$104.95</p>
-    </article>
-
-    <article class="bs-card min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 left-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-white text-black border border-black">Best Seller</span>
-        <span class="bs-badge absolute top-2 right-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-[#3a6b4a] text-white border border-black">Save 15%</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
-      </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">shoes 2</h3>
-      <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">1,234 Reviews</span>
-      </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$104.95</p>
-    </article>
-
-    <article class="bs-card min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 right-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-[#3a6b4a] text-white border border-black">Save 15%</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
-      </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">Rest In Nature T-Shirt Charcoal</h3>
-      <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★★</div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">1,234 Reviews</span>
-      </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$104.95</p>
-    </article>
-
-    <article class="bs-card min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 left-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-white text-black border border-black">Best Seller</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
-      </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">Outside Vibes Cap Forest Green</h3>
-      <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">1,234 Reviews</span>
-      </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$104.95</p>
-    </article>
-
-    <article class="bs-card hidden-mobile min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 left-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-white text-black border border-black">Best Seller</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
-      </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">Rest In Nature T-Shirt Charcoal</h3>
-      <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★★</div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">1,234 Reviews</span>
-      </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$104.95</p>
-    </article>
-
-    <article class="bs-card hidden-mobile min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 right-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-[#3a6b4a] text-white">Save 15%</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
-      </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">Summit Pack 32L Slate</h3>
-      <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">876 Reviews</span>
-      </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$139.95</p>
-    </article>
-
-    <article class="bs-card hidden-mobile min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 left-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-white text-black border border-black">Best Seller</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
-      </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">Trail Runner Pro Midnight</h3>
-      <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★★</div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">2,104 Reviews</span>
-      </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$189.95</p>
-    </article>
-
-    <article class="bs-card hidden-mobile min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 left-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-white text-black border border-black">Best Seller</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
-      </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">Venture Flask Obsidian</h3>
-      <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">3,410 Reviews</span>
-      </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$49.95</p>
-    </article>
-
-    <article class="bs-card hidden-mobile min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 left-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-[#3a6b4a] text-white">Save 10%</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
-      </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">Alpine Tee Stone Grey</h3>
-      <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">918 Reviews</span>
-      </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$64.95</p>
-    </article>
-
-    <article class="bs-card hidden-mobile min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 left-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-white text-black border border-black">Best Seller</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
-      </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">Ridge Cap Dusty Rose</h3>
-      <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">562 Reviews</span>
-      </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$44.95</p>
-    </article>
-
+    {% for product in featured_collection.products limit: productcount %}
+      {%- if forloop.index > 4 -%}
+        {%- assign classes = "hidden-mobile" -%}
+        {% comment %} could make "classes" more specific or leave it open for future additions {% endcomment %}
+      {%- endif -%}
+      {% render 'collection-slider-card', product: product, classes: classes, hoverimg: show_secondary_image, showratings: show_ratings  %}
+    {% endfor %}
   </div>
 
   <div class="bs-track" id="bs-track">
@@ -164,4 +36,49 @@
   <button class="bs-show-more" id="bs-show-more" onclick="bsToggle()">Show More</button>
 </div>
 
-{{ 'collection-slider.js' | asset_url | script_tag }}
+<script src="{{ 'collection-slider.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+  {
+  "name": "Collection Slider",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Featured collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_ratings",
+      "label": "Show ratings",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "label": "Show second image on hover",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "products_to_display",
+      "label": "Products to display",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "default": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Slider"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

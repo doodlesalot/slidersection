@@ -42,7 +42,7 @@ white-space: nowrap;
 display: grid;
 grid-auto-flow: column;
 grid-template-rows: 1fr;
-grid-auto-columns: 228px;
+grid-auto-columns: 335px;
 gap: 14px;
 overflow-x: auto;
 /* hide native scrollbar — replaced by custom track */
@@ -90,8 +90,8 @@ transition: opacity 0.32s ease;
 }
 .bs-card-img .primary   { opacity: 1; z-index: 1; }
 .bs-card-img .secondary { opacity: 0; z-index: 2; }
-.bs-card:hover .primary   { opacity: 0; }
-.bs-card:hover .secondary { opacity: 1; }
+.bs-card.show-secondary:hover .primary   { opacity: 0; }
+.bs-card.show-secondary:hover .secondary { opacity: 1; }
 
 
 /* mobile */

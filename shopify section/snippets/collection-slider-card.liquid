@@ -1,0 +1,15 @@
+<article class="bs-card min-w-0 cursor-pointer {{ classes }}{% if hoverimg %} show-secondary{% endif %}">
+  <div class="bs-card-img">
+    <span class="bs-badge absolute top-2 left-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-white text-black border border-black">Best Seller</span>
+    {{ product.featured_image | image_url: width: 500 | image_tag: alt: product.featured_image.alt, class: "primary" }}
+    {% if hoverimg == true %}
+    {{ product.images[1] | image_url: width: 500 | image_tag: alt: product.images[1].alt, class: "secondary" }}
+    {% endif %}
+  </div>
+  <h4 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">{{ product.title }}</h4>
+  <div class="flex items-center gap-1 mb-1">
+    <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
+    <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">1,234 Reviews</span>
+  </div>
+  <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">{{ product.price | money_with_currency }}</p>
+</article>
