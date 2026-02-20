@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slider on a Platter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #fff;
+      color: #111;
+      padding: 40px 0 60px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .view-all {
+      font-size: 13px;
+      font-weight: 500;
+      color: #111;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+    .view-all:hover { text-decoration: underline; }
+
+    /* desktop */
+    .scroll-row {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      scrollbar-width: thin;
+      scrollbar-color: #bbb transparent;
+    }
+    .scroll-row::-webkit-scrollbar        { height: 3px; }
+    .scroll-row:hover::-webkit-scrollbar  { height: 6px; }
+    .scroll-row::-webkit-scrollbar-track  { background: #e8e8e8; border-radius: 2px; }
+    .scroll-row::-webkit-scrollbar-thumb  { background: #bbb; border-radius: 2px; }
+    .scroll-row:hover::-webkit-scrollbar-thumb { background: #888; }
+
+    /* prd card */
+    .product-card {
+      flex: 0 0 185px;
+      cursor: pointer;
+    }
+    @media (min-width: 1024px) { .product-card { flex: 0 0 205px; } }
+    @media (min-width: 1200px) { .product-card { flex: 0 0 216px; } }
+
+    .card-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      overflow: hidden;
+      margin-bottom: 10px;
+      border-radius: 2px;
+    }
+    .card-img-wrap img {
+      position: absolute;
+      inset: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      transition: opacity 0.3s ease;
+    }
+    .img-primary   { opacity: 1; z-index: 1; }
+    .img-secondary { opacity: 0; z-index: 2; }
+    .product-card:hover .img-primary   { opacity: 0; }
+    .product-card:hover .img-secondary { opacity: 1; }
+
+    /* badge */
+    .badge {
+      position: absolute;
+      top: 7px; left: 7px;
+      z-index: 10;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 2px 6px 1.5px;
+      border-radius: 3px;
+      line-height: 1.5;
+    }
+    .badge-red   { background: #e5311d; }
+    .badge-green { background: #1f9e38; }
+
+    /* card text */
+    .card-name {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.055em;
+      text-transform: uppercase;
+      line-height: 1.4;
+      margin-bottom: 5px;
+    }
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 4px;
+    }
+    .stars {
+      display: flex;
+      align-items: center;
+      font-size: 11px;
+      color: #f5a623;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+    .star-half {
+      position: relative;
+      display: inline-block;
+      color: #ddd;
+    }
+    .star-half::after {
+      content: '★';
+      position: absolute;
+      left: 0; top: 0;
+      width: 50%;
+      overflow: hidden;
+      color: #f5a623;
+    }
+    .review-count { font-size: 10.5px; color: #888; }
+    .card-price   { font-size: 13.5px; font-weight: 600; }
+
+    /* mobile */
+    .mobile-panel {
+      display: none;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 18px 14px 14px;
+    }
+    .mobile-panel-title {
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+    }
+    .m-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .m-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      overflow: hidden;
+      border-radius: 2px;
+      margin-bottom: 7px;
+    }
+    .m-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .m-name {
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.045em;
+      line-height: 1.35;
+      margin-bottom: 3px;
+    }
+    .m-meta  { display: flex; align-items: center; gap: 3px; margin-bottom: 2px; }
+    .m-price { font-size: 12px; font-weight: 600; }
+
+    /* hidden drawer */
+    #m-hidden {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #m-hidden.open { max-height: 2000px; }
+    .m-hidden-grid { margin-top: 10px; }
+
+    /* show more button */
+    .show-more-btn {
+      display: block;
+      width: 100%;
+      margin-top: 14px;
+      padding: 13px 0;
+      background: #111;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .show-more-btn:hover { background: #333; }
+
+    /* show/hide */
+    @media (max-width: 767px) {
+      .desktop-section { display: none; }
+      .mobile-panel    { display: block; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- desktop -->
+  <div class="desktop-section">
+    <div class="section-header">
+      <h2 class="section-title">Best Sellers</h2>
+      <a href="#" class="view-all">
+        Shop All Best Sellers
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="scroll-row">
+      <article class="product-card">
+        <div class="card-img-wrap">
+          <span class="badge badge-red">Best Seller</span>
+          <img class="img-primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" />
+          <img class="img-secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" />
+        </div>
+        <h3 class="card-name">Shoes</h3>
+        <div class="card-meta">
+          <div class="stars">★★★★</div>
+          <span class="review-count">1,234 Reviews</span>
+        </div>
+        <p class="card-price">$104.95</p>
+      </article>
+      <!-- x 10  -->
+    </div>
+  </div>
+  <!-- /desktop-section -->
+
+
+  <!-- mobile -->
+  <div class="mobile-panel">
+    <h2 class="mobile-panel-title">Best Sellers</h2>
+
+    <div class="m-grid">
+      <article>
+        <div class="m-img-wrap">
+          <span class="badge badge-red">Best Seller</span>
+          <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" />
+        </div>
+        <h3 class="m-name">Shoes</h3>
+        <div class="m-meta">
+          <div class="stars" style="font-size:9px;">★★★★</div>
+          <span class="review-count" style="font-size:9px;">1,234 Reviews</span>
+        </div>
+        <p class="m-price">$104.95</p>
+      </article>
+      <!-- x 4 -->
+
+    </div>
+
+    <!-- Hidden: cards 5–10 -->
+    <div id="m-hidden">
+      <div class="m-grid m-hidden-grid">
+
+        <article>
+        <div class="m-img-wrap">
+          <span class="badge badge-red">Best Seller</span>
+          <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" />
+        </div>
+        <h3 class="m-name">Shoes</h3>
+        <div class="m-meta">
+          <div class="stars" style="font-size:9px;">★★★★</div>
+          <span class="review-count" style="font-size:9px;">1,234 Reviews</span>
+        </div>
+        <p class="m-price">$104.95</p>
+      </article>
+
+      </div>
+    </div>
+
+    <button class="show-more-btn" id="show-more-btn" onclick="toggleMore()">Show More</button>
+  </div>
+  <!-- /mobile-panel -->
+
+</div>
+
+<script>
+  function toggleMore() {
+    const drawer = document.getElementById('m-hidden');
+    const btn    = document.getElementById('show-more-btn');
+    const open   = drawer.classList.toggle('open');
+    btn.textContent = open ? 'Show Less' : 'Show More';
+  }
+</script>
+
+</body>
+</html>
