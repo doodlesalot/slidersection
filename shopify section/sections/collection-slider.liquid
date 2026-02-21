@@ -7,10 +7,10 @@
 {% assign productcount = section.settings.productS_to_display %}
 
 
-<div class="bs-section">
-  <div class="bs-header">
-    <h2 class="bs-title">{{  featured_collection.title }}</h2>
-    <a href="{{ featured_collection.url }}" class="bs-view-all">
+<div class="max-md:px-[14px] max-md:pt-[18px] max-md:pb-[14px] max-md:rounded-[10px] max-md:mx-4">
+  <div class="flex items-center justify-between mb-5 max-w-[1280px] mx-auto px-7 max-md:max-w-none max-md:mx-0 max-md:px-0 max-md:justify-center max-md:mb-[14px]">
+    <h2 class="font-extrabold text-[30px] tracking-[-0.01em] leading-none max-md:text-[20px]">{{  featured_collection.title }}</h2>
+    <a href="{{ featured_collection.url }}" class="text-[13px] font-medium text-[#111] no-underline inline-flex items-center gap-[5px] whitespace-nowrap hover:underline max-md:hidden">
       Shop All {{ featured_collection.title }}
       {%- comment %}change this to either translation or section setting {%- endcomment -%}
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -21,11 +21,9 @@
 
   <div class="bs-grid" id="bs-grid">
     {% for product in featured_collection.products limit: productcount %}
-      {%- if forloop.index > 4 -%}
-        {%- assign classes = "hidden-mobile" -%}
-        {% comment %} could make "classes" more specific or leave it open for future additions {% endcomment %}
-      {%- endif -%}
-      {% render 'collection-slider-card', product: product, classes: classes, hoverimg: show_secondary_image, showratings: show_ratings  %}
+      {%- if forloop.index == 5 -%}<div class="bs-more-drawer" id="bs-more-drawer">{%- endif -%}
+      {% render 'collection-slider-card', product: product, hoverimg: show_secondary_image, showratings: show_ratings %}
+      {%- if forloop.last and forloop.index >= 5 -%}</div>{%- endif -%}
     {% endfor %}
   </div>
 
@@ -33,7 +31,7 @@
     <div class="bs-thumb" id="bs-thumb"></div>
   </div>
 
-  <button class="bs-show-more" id="bs-show-more" onclick="bsToggle()">Show More</button>
+  <button id="bs-show-more" onclick="bsToggle()" class="hidden max-md:block w-full mt-[14px] py-[13px] bg-[#111] text-white text-[13px] font-bold tracking-[0.1em] uppercase border-0 rounded-[6px] cursor-pointer transition-colors duration-150 hover:bg-[#333]">Show More</button>
 </div>
 
 <script src="{{ 'collection-slider.js' | asset_url }}" defer="defer"></script>
