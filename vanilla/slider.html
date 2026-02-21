@@ -4,177 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Slider Demo</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background: #fff;
-      color: #111;
-      padding: 48px 0 64px;
-    }
-
-    .bs-section {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 28px;
-    }
-
-    /* header */
-    .bs-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-    .bs-title {
-      font-weight: 800;
-      font-size: 30px;
-      letter-spacing: -0.01em;
-      line-height: 1;
-    }
-    .bs-view-all {
-      font-size: 13px;
-      font-weight: 500;
-      color: #111;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      white-space: nowrap;
-    }
-    .bs-view-all:hover { text-decoration: underline; }
-
-    /* card grid */
-    .bs-grid {
-      display: grid;
-      grid-auto-flow: column;
-      grid-template-rows: 1fr;
-      grid-auto-columns: 228px;
-      gap: 14px;
-      overflow-x: auto;
-      /* hide native scrollbar — replaced by custom track */
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-    .bs-grid::-webkit-scrollbar { display: none; }
-
-    /* scrollbar */
-    .bs-track {
-      position: relative;
-      width: 100%;
-      height: 3px;
-      background: #e5e5e5;
-      border-radius: 99px;
-      margin-top: 16px;
-      cursor: pointer;
-      transition: height 0.15s, margin-top 0.15s;
-    }
-    .bs-track:hover { height: 9px; margin-top: 13px; }
-    .bs-thumb {
-      position: absolute;
-      top: 0; left: 0;
-      height: 100%;
-      background: #111;
-      border-radius: 99px;
-      pointer-events: none;
-    }
-
-    .bs-card-img {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1;
-      overflow: hidden;
-      border-radius: 4px;
-      margin-bottom: 10px;
-      background: #f0f0f0;
-    }
-    .bs-card-img img {
-      position: absolute;
-      inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: opacity 0.32s ease;
-    }
-    .bs-card-img .primary   { opacity: 1; z-index: 1; }
-    .bs-card-img .secondary { opacity: 0; z-index: 2; }
-    .bs-card:hover .primary   { opacity: 0; }
-    .bs-card:hover .secondary { opacity: 1; }
-
-
-    /* mobile */
-    @media (max-width: 767px) {
-      .bs-section {
-        padding: 18px 14px 14px;
-        border-radius: 10px;
-        margin: 0 16px;
-      }
-
-      .bs-header {
-        justify-content: center;
-        margin-bottom: 14px;
-      }
-      .bs-title { font-size: 20px; }
-      .bs-view-all { display: none; }
-
-      .bs-grid {
-        grid-auto-flow: row;
-        grid-template-rows: unset;
-        grid-template-columns: 1fr 1fr;
-        grid-auto-columns: unset;
-        overflow-x: visible;
-      }
-
-      /* hide scrollbar */
-      .bs-track { display: none; }
-
-
-      /* Scale badges down and allow text to wrap on narrow mobile cards */
-      .bs-badge {
-        font-size: 7px;
-        padding: 2px 6px;
-        white-space: normal;
-        line-height: 1.3;
-        top: 5px !important;
-      }
-      .bs-badge.left-2  { left: 5px !important; }
-      .bs-badge.right-2 { right: 5px !important; }
-
-      .bs-card.hidden-mobile { display: none; height: 0; }
-      .bs-card.hidden-mobile.revealed { display: block; height: auto; }
-
-      .bs-show-more {
-        display: block;
-        width: 100%;
-        margin-top: 14px;
-        padding: 13px 0;
-        background: #111;
-        color: #fff;
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background 0.15s;
-      }
-      .bs-show-more:hover { background: #333; }
-    }
-    /* TODO: add fonts when moving to Shopify */
-
-    @media (min-width: 768px) {
-      .bs-show-more { display: none; }
-    }
-  </style>
+  <link rel="stylesheet" href="tailwind.css">
 </head>
 <body>
 
-<div class="bs-section">
-
-  <div class="bs-header">
-    <h2 class="bs-title">Best Sellers</h2>
-    <a href="#" class="bs-view-all">
+<div class="max-md:px-[14px] max-md:pt-[18px] max-md:pb-[14px] max-md:rounded-[10px] max-md:mx-4 pt-[4rem]">
+  <div class="flex items-center justify-between mb-5 max-w-[1280px] mx-auto px-7 max-md:max-w-none max-md:mx-0 max-md:px-0 max-md:justify-center max-md:mb-[14px]">
+    <h2 class="font-extrabold text-[30px] tracking-[-0.01em] leading-none max-md:text-[20px] font-(family-name:--font-heading)">Best Sellers</h2>
+    <a href="#" class="text-[13px] font-medium text-[#111] no-underline inline-flex items-center gap-[5px] whitespace-nowrap hover:underline max-md:hidden">
       Shop All Best Sellers
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -184,145 +21,164 @@
 
   <div class="bs-grid" id="bs-grid">
 
-    <article class="bs-card min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 left-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-white text-black border border-black">Best Seller</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
+    <article class="group min-w-0 cursor-pointer">
+      <a href="#">
+      <div class="relative w-full aspect-square overflow-hidden rounded-[4px] mb-[10px] bg-[#f0f0f0]">
+        <span class="absolute top-2 left-2 max-md:top-[5px] max-md:left-[5px] z-10 text-[10px] max-md:text-[7px] font-extrabold tracking-[0.06em] uppercase leading-none max-md:leading-[1.3] whitespace-nowrap max-md:whitespace-normal px-2.5 max-md:px-[6px] py-1 max-md:py-[2px] rounded-full bg-white text-black border border-black">Best Seller</span>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-100 z-[1] group-hover:opacity-0"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-0 z-[2] group-hover:opacity-100" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
       </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">shoes</h3>
+      <h4 class="text-[18px] max-md:text-[9.5px] font-bold tracking-[0.03em] uppercase leading-[1.35] mb-[5px] max-md:mb-[3px]">Shoes</h4>
       <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">1,234 Reviews</span>
+        <div class="text-[11px] max-md:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
+        <span class="text-[10.5px] max-md:text-[9px] text-[#888]">1,234 Reviews</span>
       </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$104.95</p>
+      <p class="text-[16px] max-md:text-[12px] font-semibold tracking-normal">$188.00</p>
+      </a>
     </article>
 
-    <article class="bs-card min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 left-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-white text-black border border-black">Best Seller</span>
+    <article class="group min-w-0 cursor-pointer">
+      <a href="#">
+      <div class="relative w-full aspect-square overflow-hidden rounded-[4px] mb-[10px] bg-[#f0f0f0]">
+        <span class="absolute top-2 left-2 max-md:top-[5px] max-md:left-[5px] z-10 text-[10px] max-md:text-[7px] font-extrabold tracking-[0.06em] uppercase leading-none max-md:leading-[1.3] whitespace-nowrap max-md:whitespace-normal px-2.5 max-md:px-[6px] py-1 max-md:py-[2px] rounded-full bg-white text-black border border-black">Best Seller</span>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-100 z-[1] group-hover:opacity-0"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-0 z-[2] group-hover:opacity-100" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
+      </div>
+      <h4 class="text-[18px] max-md:text-[9.5px] font-bold tracking-[0.03em] uppercase leading-[1.35] mb-[5px] max-md:mb-[3px]">Shoes</h4>
+      <div class="flex items-center gap-1 mb-1">
+        <div class="text-[11px] max-md:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
+        <span class="text-[10.5px] max-md:text-[9px] text-[#888]">1,234 Reviews</span>
+      </div>
+      <p class="text-[16px] max-md:text-[12px] font-semibold tracking-normal">$188.00</p>
+      </a>
+    </article>
+
+    <article class="group min-w-0 cursor-pointer">
+      <a href="#">
+      <div class="relative w-full aspect-square overflow-hidden rounded-[4px] mb-[10px] bg-[#f0f0f0]">
+        <span class="absolute top-2 left-2 max-md:top-[5px] max-md:left-[5px] z-10 text-[10px] max-md:text-[7px] font-extrabold tracking-[0.06em] uppercase leading-none max-md:leading-[1.3] whitespace-nowrap max-md:whitespace-normal px-2.5 max-md:px-[6px] py-1 max-md:py-[2px] rounded-full bg-white text-black border border-black">Best Seller</span>
         <span class="bs-badge absolute top-2 right-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-[#3a6b4a] text-white border border-black">Save 15%</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-100 z-[1] group-hover:opacity-0"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-0 z-[2] group-hover:opacity-100" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
       </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">shoes 2</h3>
+      <h4 class="text-[18px] max-md:text-[9.5px] font-bold tracking-[0.03em] uppercase leading-[1.35] mb-[5px] max-md:mb-[3px]">Shoes</h4>
       <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">1,234 Reviews</span>
+        <div class="text-[11px] max-md:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
+        <span class="text-[10.5px] max-md:text-[9px] text-[#888]">1,234 Reviews</span>
       </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$104.95</p>
+      <p class="text-[16px] max-md:text-[12px] font-semibold tracking-normal">$188.00</p>
+      </a>
     </article>
 
-    <article class="bs-card min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 right-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-[#3a6b4a] text-white border border-black">Save 15%</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
+    <article class="group min-w-0 cursor-pointer">
+      <a href="#">
+      <div class="relative w-full aspect-square overflow-hidden rounded-[4px] mb-[10px] bg-[#f0f0f0]">
+        <span class="absolute top-2 left-2 max-md:top-[5px] max-md:left-[5px] z-10 text-[10px] max-md:text-[7px] font-extrabold tracking-[0.06em] uppercase leading-none max-md:leading-[1.3] whitespace-nowrap max-md:whitespace-normal px-2.5 max-md:px-[6px] py-1 max-md:py-[2px] rounded-full bg-white text-black border border-black">Best Seller</span>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-100 z-[1] group-hover:opacity-0"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-0 z-[2] group-hover:opacity-100" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
       </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">Rest In Nature T-Shirt Charcoal</h3>
+      <h4 class="text-[18px] max-md:text-[9.5px] font-bold tracking-[0.03em] uppercase leading-[1.35] mb-[5px] max-md:mb-[3px]">Shoes</h4>
       <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★★</div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">1,234 Reviews</span>
+        <div class="text-[11px] max-md:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
+        <span class="text-[10.5px] max-md:text-[9px] text-[#888]">1,234 Reviews</span>
       </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$104.95</p>
+      <p class="text-[16px] max-md:text-[12px] font-semibold tracking-normal">$188.00</p>
+      </a>
+    </article>
+    <article class="group min-w-0 cursor-pointer">
+      <a href="#">
+      <div class="relative w-full aspect-square overflow-hidden rounded-[4px] mb-[10px] bg-[#f0f0f0]">
+        <span class="absolute top-2 left-2 max-md:top-[5px] max-md:left-[5px] z-10 text-[10px] max-md:text-[7px] font-extrabold tracking-[0.06em] uppercase leading-none max-md:leading-[1.3] whitespace-nowrap max-md:whitespace-normal px-2.5 max-md:px-[6px] py-1 max-md:py-[2px] rounded-full bg-white text-black border border-black">Best Seller</span>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-100 z-[1] group-hover:opacity-0"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-0 z-[2] group-hover:opacity-100" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
+      </div>
+      <h4 class="text-[18px] max-md:text-[9.5px] font-bold tracking-[0.03em] uppercase leading-[1.35] mb-[5px] max-md:mb-[3px]">Shoes</h4>
+      <div class="flex items-center gap-1 mb-1">
+        <div class="text-[11px] max-md:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
+        <span class="text-[10.5px] max-md:text-[9px] text-[#888]">1,234 Reviews</span>
+      </div>
+      <p class="text-[16px] max-md:text-[12px] font-semibold tracking-normal">$188.00</p>
+      </a>
     </article>
 
-    <article class="bs-card min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 left-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-white text-black border border-black">Best Seller</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
+    <article class="group min-w-0 cursor-pointer">
+      <a href="#">
+      <div class="relative w-full aspect-square overflow-hidden rounded-[4px] mb-[10px] bg-[#f0f0f0]">
+        <span class="absolute top-2 left-2 max-md:top-[5px] max-md:left-[5px] z-10 text-[10px] max-md:text-[7px] font-extrabold tracking-[0.06em] uppercase leading-none max-md:leading-[1.3] whitespace-nowrap max-md:whitespace-normal px-2.5 max-md:px-[6px] py-1 max-md:py-[2px] rounded-full bg-white text-black border border-black">Best Seller</span>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-100 z-[1] group-hover:opacity-0"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-0 z-[2] group-hover:opacity-100" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
       </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">Outside Vibes Cap Forest Green</h3>
+      <h4 class="text-[18px] max-md:text-[9.5px] font-bold tracking-[0.03em] uppercase leading-[1.35] mb-[5px] max-md:mb-[3px]">Shoes</h4>
       <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">1,234 Reviews</span>
+        <div class="text-[11px] max-md:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
+        <span class="text-[10.5px] max-md:text-[9px] text-[#888]">1,234 Reviews</span>
       </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$104.95</p>
+      <p class="text-[16px] max-md:text-[12px] font-semibold tracking-normal">$188.00</p>
+      </a>
     </article>
 
-    <article class="bs-card hidden-mobile min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 left-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-white text-black border border-black">Best Seller</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
+    <article class="group min-w-0 cursor-pointer">
+      <a href="#">
+      <div class="relative w-full aspect-square overflow-hidden rounded-[4px] mb-[10px] bg-[#f0f0f0]">
+        <span class="absolute top-2 left-2 max-md:top-[5px] max-md:left-[5px] z-10 text-[10px] max-md:text-[7px] font-extrabold tracking-[0.06em] uppercase leading-none max-md:leading-[1.3] whitespace-nowrap max-md:whitespace-normal px-2.5 max-md:px-[6px] py-1 max-md:py-[2px] rounded-full bg-white text-black border border-black">Best Seller</span>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-100 z-[1] group-hover:opacity-0"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-0 z-[2] group-hover:opacity-100" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
       </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">Rest In Nature T-Shirt Charcoal</h3>
+      <h4 class="text-[18px] max-md:text-[9.5px] font-bold tracking-[0.03em] uppercase leading-[1.35] mb-[5px] max-md:mb-[3px]">Shoes</h4>
       <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★★</div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">1,234 Reviews</span>
+        <div class="text-[11px] max-md:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
+        <span class="text-[10.5px] max-md:text-[9px] text-[#888]">1,234 Reviews</span>
       </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$104.95</p>
+      <p class="text-[16px] max-md:text-[12px] font-semibold tracking-normal">$188.00</p>
+      </a>
     </article>
 
-    <article class="bs-card hidden-mobile min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 right-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-[#3a6b4a] text-white">Save 15%</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
+    <article class="group min-w-0 cursor-pointer">
+      <a href="#">
+      <div class="relative w-full aspect-square overflow-hidden rounded-[4px] mb-[10px] bg-[#f0f0f0]">
+        <span class="absolute top-2 left-2 max-md:top-[5px] max-md:left-[5px] z-10 text-[10px] max-md:text-[7px] font-extrabold tracking-[0.06em] uppercase leading-none max-md:leading-[1.3] whitespace-nowrap max-md:whitespace-normal px-2.5 max-md:px-[6px] py-1 max-md:py-[2px] rounded-full bg-white text-black border border-black">Best Seller</span>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-100 z-[1] group-hover:opacity-0"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-0 z-[2] group-hover:opacity-100" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
       </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">Summit Pack 32L Slate</h3>
+      <h4 class="text-[18px] max-md:text-[9.5px] font-bold tracking-[0.03em] uppercase leading-[1.35] mb-[5px] max-md:mb-[3px]">Shoes</h4>
       <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">876 Reviews</span>
+        <div class="text-[11px] max-md:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
+        <span class="text-[10.5px] max-md:text-[9px] text-[#888]">1,234 Reviews</span>
       </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$139.95</p>
+      <p class="text-[16px] max-md:text-[12px] font-semibold tracking-normal">$188.00</p>
+      </a>
     </article>
 
-    <article class="bs-card hidden-mobile min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 left-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-white text-black border border-black">Best Seller</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
+    <article class="group min-w-0 cursor-pointer">
+      <a href="#">
+      <div class="relative w-full aspect-square overflow-hidden rounded-[4px] mb-[10px] bg-[#f0f0f0]">
+        <span class="absolute top-2 left-2 max-md:top-[5px] max-md:left-[5px] z-10 text-[10px] max-md:text-[7px] font-extrabold tracking-[0.06em] uppercase leading-none max-md:leading-[1.3] whitespace-nowrap max-md:whitespace-normal px-2.5 max-md:px-[6px] py-1 max-md:py-[2px] rounded-full bg-white text-black border border-black">Best Seller</span>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-100 z-[1] group-hover:opacity-0"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-0 z-[2] group-hover:opacity-100" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
       </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">Trail Runner Pro Midnight</h3>
+      <h4 class="text-[18px] max-md:text-[9.5px] font-bold tracking-[0.03em] uppercase leading-[1.35] mb-[5px] max-md:mb-[3px]">Shoes</h4>
       <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★★</div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">2,104 Reviews</span>
+        <div class="text-[11px] max-md:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
+        <span class="text-[10.5px] max-md:text-[9px] text-[#888]">1,234 Reviews</span>
       </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$189.95</p>
+      <p class="text-[16px] max-md:text-[12px] font-semibold tracking-normal">$188.00</p>
+      </a>
     </article>
 
-    <article class="bs-card hidden-mobile min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 left-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-white text-black border border-black">Best Seller</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
+    <article class="group min-w-0 cursor-pointer">
+      <a href="#">
+      <div class="relative w-full aspect-square overflow-hidden rounded-[4px] mb-[10px] bg-[#f0f0f0]">
+        <span class="absolute top-2 left-2 max-md:top-[5px] max-md:left-[5px] z-10 text-[10px] max-md:text-[7px] font-extrabold tracking-[0.06em] uppercase leading-none max-md:leading-[1.3] whitespace-nowrap max-md:whitespace-normal px-2.5 max-md:px-[6px] py-1 max-md:py-[2px] rounded-full bg-white text-black border border-black">Best Seller</span>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-100 z-[1] group-hover:opacity-0"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
+        <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[320ms] ease-out opacity-0 z-[2] group-hover:opacity-100" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
       </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">Venture Flask Obsidian</h3>
+      <h4 class="text-[18px] max-md:text-[9.5px] font-bold tracking-[0.03em] uppercase leading-[1.35] mb-[5px] max-md:mb-[3px]">Shoes</h4>
       <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">3,410 Reviews</span>
+        <div class="text-[11px] max-md:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
+        <span class="text-[10.5px] max-md:text-[9px] text-[#888]">1,234 Reviews</span>
       </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$49.95</p>
-    </article>
-
-    <article class="bs-card hidden-mobile min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 left-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-[#3a6b4a] text-white">Save 10%</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
-      </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">Alpine Tee Stone Grey</h3>
-      <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">918 Reviews</span>
-      </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$64.95</p>
-    </article>
-
-    <article class="bs-card hidden-mobile min-w-0 cursor-pointer">
-      <div class="bs-card-img">
-        <span class="bs-badge absolute top-2 left-2 z-10 text-[9px] font-extrabold tracking-[0.08em] uppercase leading-none whitespace-nowrap px-2.5 py-1 rounded-full bg-white text-black border border-black">Best Seller</span>
-        <img class="primary"   src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=500" alt="shoes" loading="lazy"/>
-        <img class="secondary" src="https://images.unsplash.com/photo-1600185365778-7875a359b924?q=80&w=500" alt="shoes alt" loading="lazy"/>
-      </div>
-      <h3 class="text-[11px] max-[767px]:text-[9.5px] font-bold tracking-[0.06em] uppercase leading-[1.35] mb-[5px] max-[767px]:mb-[3px]">Ridge Cap Dusty Rose</h3>
-      <div class="flex items-center gap-1 mb-1">
-        <div class="text-[11px] max-[767px]:text-[9px] text-[#f5a623] tracking-[-0.5px] leading-none">★★★★<span class="text-[#ddd]">★</span></div>
-        <span class="text-[10.5px] max-[767px]:text-[9px] text-[#888]">562 Reviews</span>
-      </div>
-      <p class="text-[13.5px] max-[767px]:text-[12px] font-semibold">$44.95</p>
+      <p class="text-[16px] max-md:text-[12px] font-semibold tracking-normal">$188.00</p>
+      </a>
     </article>
 
   </div>
@@ -331,22 +187,22 @@
     <div class="bs-thumb" id="bs-thumb"></div>
   </div>
 
-  <button class="bs-show-more" id="bs-show-more" onclick="bsToggle()">Show More</button>
+  <button id="bs-show-more" onclick="bsToggle()" class="hidden max-md:block w-full mt-[14px] py-[13px] bg-[#111] text-white text-[13px] font-bold tracking-[0.1em] uppercase border-0 rounded-[6px] cursor-pointer transition-colors duration-150 hover:bg-[#333]">Show More</button>
 </div>
 
 <script>
-  // scrollbar
+ // scrollbar
   const grid  = document.getElementById('bs-grid');
   const track = document.getElementById('bs-track');
   const thumb = document.getElementById('bs-thumb');
 
   function updateThumb() {
-    const { scrollLeft, scrollWidth, clientWidth } = grid;
-    const scrollable = scrollWidth - clientWidth;
-    const ratio      = scrollable > 0 ? scrollLeft / scrollable : 0;
-    const thumbPct   = Math.max(10, (clientWidth / scrollWidth) * 100);
-    thumb.style.width = thumbPct + '%';
-    thumb.style.left  = (ratio * (100 - thumbPct)) + '%';
+      const { scrollLeft, scrollWidth, clientWidth } = grid;
+      const scrollable = scrollWidth - clientWidth;
+      const ratio      = scrollable > 0 ? scrollLeft / scrollable : 0;
+      const thumbPct   = Math.max(10, (clientWidth / scrollWidth) * 100);
+      thumb.style.width = thumbPct + '%';
+      thumb.style.left  = (ratio * (100 - thumbPct)) + '%';
   }
 
   updateThumb();
@@ -355,34 +211,36 @@
 
   // track it
   track.addEventListener('click', (e) => {
-    const rect = track.getBoundingClientRect();
-    const ratio = (e.clientX - rect.left) / rect.width;
-    grid.scrollLeft = ratio * (grid.scrollWidth - grid.clientWidth);
+      const rect = track.getBoundingClientRect();
+      const ratio = (e.clientX - rect.left) / rect.width;
+      grid.scrollLeft = ratio * (grid.scrollWidth - grid.clientWidth);
   });
 
   // drag it
   let dragging = false, startX = 0, startScroll = 0;
   thumb.style.pointerEvents = 'auto';
   thumb.addEventListener('mousedown', (e) => {
-    dragging = true; startX = e.clientX; startScroll = grid.scrollLeft;
-    e.preventDefault();
+      dragging = true; startX = e.clientX; startScroll = grid.scrollLeft;
+      e.preventDefault();
   });
+
   document.addEventListener('mousemove', (e) => {
-    if (!dragging) return;
-    const delta = (e.clientX - startX) / track.offsetWidth * grid.scrollWidth;
-    grid.scrollLeft = Math.max(0, Math.min(grid.scrollWidth - grid.clientWidth, startScroll + delta));
+      if (!dragging) return;
+      const delta = (e.clientX - startX) / track.offsetWidth * grid.scrollWidth;
+      grid.scrollLeft = Math.max(0, Math.min(grid.scrollWidth - grid.clientWidth, startScroll + delta));
   });
+
   document.addEventListener('mouseup', () => { dragging = false; });
 
   // show more
   function bsToggle() {
-    const btn  = document.getElementById('bs-show-more');
-    const open = btn.dataset.open === 'true';
-    document.querySelectorAll('.hidden-mobile').forEach(el => {
-      el.classList.toggle('revealed', !open);
-    });
-    btn.dataset.open  = !open;
-    btn.textContent   = open ? 'Show More' : 'Show Less';
+      const btn    = document.getElementById('bs-show-more');
+      const drawer = document.getElementById('bs-more-drawer');
+      if (!drawer) return;
+      const open = btn.dataset.open === 'true';
+      drawer.classList.toggle('open', !open);
+      btn.dataset.open = !open;
+      btn.textContent  = open ? 'Show More' : 'Show Less';
   }
 </script>
 
